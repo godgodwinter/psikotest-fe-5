@@ -431,10 +431,15 @@ const kecerdasanList = ref([
             </p>
             <!-- jika  kelas 12 -->
 
-            <p
+             <p
               class="indent-8"
               v-else-if="
-                kelas == 'XI' || kelas == 'xi' || kelas == '11' || kelas == '12'
+                kelas == 'XI' ||
+                kelas == 'xi' ||
+                kelas == '11' ||
+                kelas == '12' ||
+                kelas == 'XII' ||
+                kelas == 'xii'
               "
             >
               Kelanjutan studi disarankan masuk Fakultas
