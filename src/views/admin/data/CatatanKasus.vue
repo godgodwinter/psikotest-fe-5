@@ -1,16 +1,22 @@
 <script setup>
+import moment from "moment/min/moment-with-locales";
+import localization from "moment/locale/id";
+moment.updateLocale("id", localization);
 const BASE_URL = import.meta.env.VITE_API_URL;
 import Api from "@/axios/axios";
 import { ref, watch, computed } from "vue";
 import BreadCrumb from "@/components/atoms/BreadCrumb.vue";
 import BreadCrumbSpace from "@/components/atoms/BreadCrumbSpace.vue";
 import ButtonEdit from "@/components/atoms/ButtonEdit.vue";
+import ButtonDelete from "@/components/atoms/ButtonDel.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStoreAdminBar } from "@/stores/adminBar";
+import Toast from "@/components/lib/Toast.js";
 
 import { useStoreGuruBk } from "@/stores/guruBk";
 const storeGuruBk = useStoreGuruBk();
 const sekolah = computed(() => storeGuruBk.getSekolah);
+const me = computed(() => storeGuruBk.getIdentitas);
 storeGuruBk.$subscribe((mutation, state) => {
   // console.log(sekolah.value.id);
 });
@@ -24,13 +30,6 @@ const dataAsli = ref([]);
 const data = ref([]);
 
 const columns = [
-  {
-    label: "No",
-    field: "no",
-    width: "50px",
-    tdClass: "text-center",
-    thClass: "text-center",
-  },
   {
     label: "Actions",
     field: "actions",
@@ -54,6 +53,11 @@ const columns = [
     field: "teknikkonseling",
     type: "String",
   },
+  {
+    label: "Penulis",
+    field: "penulis",
+    type: "String",
+  },
 ];
 
 const getData = async () => {
@@ -68,6 +72,20 @@ const getData = async () => {
   }
 };
 getData();
+
+const encode = (value) => window.btoa(value);
+
+const doCetak = (id = null, token = moment().format("YYYY-MM-Do")) => {
+  if (id === null) {
+    Toast.danger("Warning", "Data tidak valid!");
+  } else {
+    window.open(
+      `${BASE_URL}api/guest/cetak/catatankasus/${encode(id)}?token=${encode(
+        token
+      )}`
+    );
+  }
+};
 </script>
 <template>
   <div class="pt-4 px-10 md:flex justify-between">
@@ -82,6 +100,32 @@ getData();
         <template v-slot:content> Kasus <BreadCrumbSpace /> Index </template>
       </BreadCrumb>
     </div>
+  </div>
+  <div class="pt-4 px-10 md:flex justify-between">
+    <div>
+      <router-link :to="{ name: 'AdminCatatanKasus', params: { id } }">
+        <buttton class="btn btn-primary">Tambah</buttton>
+      </router-link>
+      <a @click="doCetak(me.id)">
+        <button class="btn btn-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+            />
+          </svg>
+        </button>
+      </a>
+    </div>
+    <div class="md:py-0 py-4"></div>
   </div>
 
   <div class="pt-4 px-10 md:flex justify-between">
@@ -120,6 +164,7 @@ getData();
       <div class="bg-white shadow rounded-lg px-4 py-4">
         <div v-if="data">
           <vue-good-table
+            line-numbers="true"
             :columns="columns"
             :rows="data"
             :search-options="{
@@ -135,8 +180,24 @@ getData();
             <template #table-row="props">
               <span v-if="props.column.field == 'actions'">
                 <div
-                  class="text-sm font-medium text-center flex justify-center space-x-0"
+                  class="text-sm font-medium text-center flex justify-center space-x-1"
                 >
+                  <div v-if="props.row.penulis == 'admin'"></div>
+                  <div
+                    v-else-if="props.row.penulis == 'gurubk'"
+                    class="text-sm font-medium text-center flex justify-center space-x-0"
+                  ></div>
+                  <div
+                    v-else
+                    class="text-sm font-medium text-center flex justify-center space-x-0"
+                  >
+                    <ButtonEdit
+                      @click="doEditData(props.row.id, props.index)"
+                    />
+                    <ButtonDelete
+                      @click="doDeleteData(props.row.id, props.index)"
+                    />
+                  </div>
                   <router-link
                     :to="{
                       name: 'AdminCatatanKasusDetail',
@@ -167,6 +228,13 @@ getData();
 
               <span v-else-if="props.column.field == 'no'">
                 <div class="text-center">{{ props.index + 1 }}</div>
+              </span>
+              <span v-else-if="props.column.field == 'penulis'">
+                <div class="text-center">
+                  <p v-if="props.row.penulis == 'admin'">Admin</p>
+                  <p v-else-if="props.row.penulis == 'gurubk'">Sekolah</p>
+                  <p v-else>Ortu / Walimurid</p>
+                </div>
               </span>
 
               <span v-else>
