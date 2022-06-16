@@ -1,4 +1,7 @@
 <script setup>
+import moment from "moment/min/moment-with-locales";
+import localization from "moment/locale/id";
+moment.updateLocale("id", localization);
 const BASE_URL = import.meta.env.VITE_API_URL;
 import Api from "@/axios/axios";
 import { ref, watch, computed } from "vue";
@@ -7,6 +10,8 @@ import BreadCrumbSpace from "@/components/atoms/BreadCrumbSpace.vue";
 import ButtonEdit from "@/components/atoms/ButtonEdit.vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStoreAdminBar } from "@/stores/adminBar";
+import Toast from "@/components/lib/Toast.js";
+import ButtonDelete from "@/components/atoms/ButtonDel.vue";
 
 import { useStoreGuruBk } from "@/stores/guruBk";
 const storeGuruBk = useStoreGuruBk();
@@ -24,13 +29,6 @@ const dataAsli = ref([]);
 const data = ref([]);
 
 const columns = [
-  {
-    label: "No",
-    field: "no",
-    width: "50px",
-    tdClass: "text-center",
-    thClass: "text-center",
-  },
   {
     label: "Actions",
     field: "actions",
@@ -63,6 +61,41 @@ const getData = async () => {
   }
 };
 getData();
+
+const doEditData = async (id2) => {
+  router.push({
+    name: "AdminPengembangandiriEdit",
+    params: { id: id2 },
+  });
+};
+
+const doDeleteData = async (dataId, index) => {
+  if (confirm("Apakah anda yakin menghapus data ini?")) {
+    try {
+      const response = await Api.delete(
+        `ortu/data/catatan/pengembangandiri/data/${dataId}`
+      );
+      data.value.splice(index, 1);
+      Toast.success("Success", "Data Berhasil dihapus!");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
+const encode = (value) => window.btoa(value);
+const me = computed(() => storeGuruBk.getIdentitas);
+const doCetak = (id = null, token = moment().format("YYYY-MM-Do")) => {
+  if (id === null) {
+    Toast.danger("Warning", "Data tidak valid!");
+  } else {
+    window.open(
+      `${BASE_URL}api/guest/cetak/catatanpengembangandiri/${encode(
+        id
+      )}?token=${encode(token)}`
+    );
+  }
+};
 </script>
 <template>
   <div class="pt-4 px-10 md:flex justify-between">
@@ -83,9 +116,29 @@ getData();
 
   <div class="pt-4 px-10 md:flex justify-between">
     <div>
-      <span
-        class="text-2xl sm:text-3xl leading-none font-bold text-gray-700 shadow-sm"
-      ></span>
+      <router-link
+        :to="{ name: 'AdminPengembangandiriTambah', params: { id } }"
+      >
+        <buttton class="btn btn-primary">Tambah</buttton>
+      </router-link>
+      <a @click="doCetak(me.id)">
+        <button class="btn btn-sm">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+            />
+          </svg>
+        </button>
+      </a>
     </div>
     <div class="md:py-0 py-4 space-x-2 space-y-2">
       <!-- <span @click="router.go(-1)">
@@ -117,6 +170,7 @@ getData();
       <div class="bg-white shadow rounded-lg px-4 py-4">
         <div v-if="data">
           <vue-good-table
+            :line-numbers="true"
             :columns="columns"
             :rows="data"
             :search-options="{
@@ -132,8 +186,24 @@ getData();
             <template #table-row="props">
               <span v-if="props.column.field == 'actions'">
                 <div
-                  class="text-sm font-medium text-center flex justify-center space-x-0"
+                  class="text-sm font-medium text-center flex justify-center space-x-1"
                 >
+                  <div v-if="props.row.penulis == 'admin'"></div>
+                  <div
+                    v-else-if="props.row.penulis == 'gurubk'"
+                    class="text-sm font-medium text-center flex justify-center space-x-0"
+                  ></div>
+                  <div
+                    v-else
+                    class="text-sm font-medium text-center flex justify-center space-x-0"
+                  >
+                    <ButtonEdit
+                      @click="doEditData(props.row.id, props.index)"
+                    />
+                    <ButtonDelete
+                      @click="doDeleteData(props.row.id, props.index)"
+                    />
+                  </div>
                   <router-link
                     :to="{
                       name: 'AdminPengembangandiriDetail',

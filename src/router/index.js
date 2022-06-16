@@ -97,6 +97,16 @@ const router = createRouter({
           component: () => import("@/views/admin/data/CatatanPengembangandiri.vue"),
         },
         {
+          path: '/pages/data/catatan/pengembangandiri/tambah',
+          name: 'AdminPengembangandiriTambah',
+          component: () => import("@/views/admin/data/CatatanPengembangandiriTambah.vue"),
+        },
+        {
+          path: '/pages/data/catatan/pengembangandiri/:id/edit',
+          name: 'AdminPengembangandiriEdit',
+          component: () => import("@/views/admin/data/CatatanPengembangandiriEdit.vue"),
+        },
+        {
           path: '/pages/data/catatan/pengembangandiri/:id',
           name: 'AdminPengembangandiriDetail',
           component: () => import("@/views/admin/data/CatatanPengembangandiriDetail.vue"),
@@ -107,9 +117,19 @@ const router = createRouter({
           component: () => import("@/views/admin/data/CatatanPrestasi.vue"),
         },
         {
-          path: '/pages/data/catatan/prestasi:id',
+          path: '/pages/data/catatan/prestasi/:id',
           name: 'AdminPrestasiDetail',
           component: () => import("@/views/admin/data/CatatanPrestasiDetail.vue"),
+        },
+        {
+          path: '/pages/data/catatan/prestasi/:id/edit',
+          name: 'AdminPrestasiEdit',
+          component: () => import("@/views/admin/data/CatatanPrestasiEdit.vue"),
+        },
+        {
+          path: '/pages/data/catatan/prestasi/tambah',
+          name: 'AdminPrestasiTambah',
+          component: () => import("@/views/admin/data/CatatanPrestasiTambah.vue"),
         },
         {
           path: '/pages/data/catatan/klasifikasi',
