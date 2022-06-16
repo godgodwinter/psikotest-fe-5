@@ -86,6 +86,25 @@ const doCetak = (id = null, token = moment().format("YYYY-MM-Do")) => {
     );
   }
 };
+
+const doEditData = async (id2) => {
+  router.push({ name: "AdminCatatanKasusEdit", params: { id: id2 } });
+};
+
+const doDeleteData = async (dataId, index) => {
+  if (confirm("Apakah anda yakin menghapus data ini?")) {
+    try {
+      const response = await Api.delete(
+        `ortu/data/catatan/kasus/data/${dataId}`
+      );
+      data.value.splice(index, 1);
+      Toast.success("Success", "Data Berhasil dihapus!");
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+};
 </script>
 <template>
   <div class="pt-4 px-10 md:flex justify-between">
@@ -103,7 +122,7 @@ const doCetak = (id = null, token = moment().format("YYYY-MM-Do")) => {
   </div>
   <div class="pt-4 px-10 md:flex justify-between">
     <div>
-      <router-link :to="{ name: 'AdminCatatanKasus', params: { id } }">
+      <router-link :to="{ name: 'AdminCatatanKasusTambah', params: { id } }">
         <buttton class="btn btn-primary">Tambah</buttton>
       </router-link>
       <a @click="doCetak(me.id)">
