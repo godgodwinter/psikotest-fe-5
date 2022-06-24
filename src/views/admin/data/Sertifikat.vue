@@ -384,6 +384,7 @@ getDataId();
       :aspekKepribadianRank="aspekKepribadianRank"
       :temp="temp"
       :paket="paket"
+      :kelas="kelas"
     />
     <CardSertifikat1
       v-else
@@ -391,6 +392,7 @@ getDataId();
       :aspekKepribadianRank="aspekKepribadianRank"
       :temp="temp"
       :paket="paket"
+      :kelas="kelas"
     />
   </div>
 </template>
