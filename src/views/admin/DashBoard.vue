@@ -104,7 +104,7 @@ let pilihKelas = ref([]);
 // get Kelas
 const getDataKelas = async () => {
   try {
-    const response = await Api.get(`ortu/datasekolah/${id}/kelas`);
+    const response = await Api.get(`ortu/getIdentitas/${id}/kelas`);
     // console.log(response);
     dataKelas.value = response.data;
     dataKelas.value.forEach((item) => {
@@ -155,6 +155,92 @@ const getDataKelas = async () => {
           ></path>
         </svg>
         <span>Selamat Datang di Menu Siswa.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 py-10">
+    <h3 class="font-bold"></h3>
+  </div>
+  <div class="w-full flex justify-center flex-wrap" v-if="getIdentitas.photo">
+    <div
+      class="xl:flex felx-wrap gap-10 xl:w-full px-4 justify-center space-y-4 w-full"
+    >
+      <div class="card xl:w-2/5 bg-base-100 shadow-xl">
+        <div class="w-full flex justify-center">
+          <label
+            class="avatar hover:scale-110 transition-all duration-500"
+            for="my-modal-1"
+          >
+            <div class="w-52 mask mask-squircle">
+              <img
+                v-if="getIdentitas.photo.logo"
+                :src="getIdentitas.photo.logo"
+              />
+              <img v-else src="@/assets/img/logo/github-copilot.svg" />
+            </div>
+          </label>
+        </div>
+
+        <!-- modal -->
+        <input type="checkbox" id="my-modal-1" class="modal-toggle" />
+        <label for="my-modal-1" class="modal cursor-pointer">
+          <label class="modal-box relative" for="">
+            <img
+              v-if="getIdentitas.photo.logo"
+              :src="getIdentitas.photo.logo"
+            />
+            <img v-else src="@/assets/img/logo/github-copilot.svg" />
+          </label>
+        </label>
+
+        <!-- modal -->
+
+        <div class="card-body items-center text-center">
+          <h2 class="card-title">{{ getSekolah.nama }}</h2>
+          <p>LOGO SEKOLAH</p>
+          <div class="card-actions">
+            <!-- <button class="btn btn-primary">Update Logo Sekolah</button> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card xl:w-2/5 bg-base-100 shadow-xl">
+        <div class="w-full flex justify-center">
+          <label
+            class="avatar hover:scale-110 transition-all duration-500"
+            for="my-modal-2"
+          >
+            <div class="w-52 mask mask-squircle">
+              <img
+                v-if="getIdentitas.photo.kepala"
+                :src="getIdentitas.photo.kepala"
+              />
+              <img v-else src="@/assets/img/avatar/user.png" />
+            </div>
+          </label>
+
+          <!-- modal -->
+          <input type="checkbox" id="my-modal-2" class="modal-toggle" />
+          <label for="my-modal-2" class="modal cursor-pointer">
+            <label class="modal-box relative" for="">
+              <img
+                v-if="getIdentitas.photo.kepala"
+                :src="getIdentitas.photo.kepala"
+              />
+              <img v-else src="@/assets/img/avatar/user.png" />
+            </label>
+          </label>
+
+          <!-- modal -->
+        </div>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title">{{ getSekolah.kepsek_nama }}</h2>
+          <p>KEPALA SEKOLAH</p>
+          <div class="card-actions">
+            <!-- <button class="btn btn-primary">Update Photo Kepala Sekolah</button> -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -236,11 +322,6 @@ const getDataKelas = async () => {
       </div>
     </div>
   </div> -->
-
-  <div class="px-4 py-4">
-    <h3 class="font-bold">Update Profile</h3>
-  </div>
-
   <div class="px-4 py-4">
     <div class="w-full">
       <div class="bg-base-100 shadow rounded-lg px-0 py-4">
@@ -613,45 +694,6 @@ const getDataKelas = async () => {
               </div>
             </Form>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="px-4 py-4">
-    <h3 class="font-bold">Update Photo</h3>
-  </div>
-  <div class="lg:flex felx-wrap gap-2 w-full px-4">
-    <div class="card w-96 bg-base-100 shadow-xl">
-      <figure class="px-10 pt-10">
-        <img
-          src="@/assets/img/logo/github-copilot.svg"
-          alt="Shoes"
-          class="rounded-xl text-white"
-        />
-      </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">Nama Sekolah</h2>
-        <p>Alamat</p>
-        <div class="card-actions">
-          <button class="btn btn-primary">Update Logo Sekolah</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card w-96 bg-base-100 shadow-xl">
-      <figure class="px-10 pt-10">
-        <img
-          src="@/assets/img/logo/github-copilot.svg"
-          alt="Shoes"
-          class="rounded-xl"
-        />
-      </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">Nama Kepala Sekolah</h2>
-        <p>Alamat</p>
-        <div class="card-actions">
-          <button class="btn btn-primary">Update Photo Kepala Sekolah</button>
         </div>
       </div>
     </div>
