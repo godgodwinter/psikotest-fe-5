@@ -186,7 +186,7 @@ getDataId();
                           {{ errors.kasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -204,7 +204,7 @@ getDataId();
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.pengambilandata }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -224,7 +224,7 @@ getDataId();
                           {{ errors.sumberkasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -244,7 +244,7 @@ getDataId();
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.golkasus }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -264,7 +264,7 @@ getDataId();
                           {{ errors.penyebabtimbulkasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -282,8 +282,8 @@ getDataId();
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.teknikkonseling }}
                         </div>
-                      </div>
-                      <div>
+                      </div> -->
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -301,7 +301,7 @@ getDataId();
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.keberhasilanpenanganankasus }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"

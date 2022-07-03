@@ -33,6 +33,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const dataDetail = ref([]);
 
+dataDetail.value.tanggal = moment().format("YYYY-MM-DD");
 const onSubmit = () => {
   const res = doStoreData();
 };
@@ -168,7 +169,7 @@ const doStoreData = async (d) => {
                           {{ errors.prestasi }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -186,7 +187,7 @@ const doStoreData = async (d) => {
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.teknikbelajar }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -230,7 +231,7 @@ const doStoreData = async (d) => {
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
-                          >Kesimpulan dan Saran</label
+                          >Keterangan</label
                         >
                         <textarea
                           v-model="dataDetail.kesimpulandansaran"

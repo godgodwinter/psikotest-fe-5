@@ -33,6 +33,7 @@ const dataAsli = ref([]);
 const data = ref([]);
 const dataDetail = ref([]);
 
+dataDetail.value.tanggal = moment().format("YYYY-MM-DD");
 const onSubmit = () => {
   const res = doStoreData();
 };
@@ -171,7 +172,7 @@ const doStoreData = async (d) => {
                           {{ errors.kasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -189,7 +190,7 @@ const doStoreData = async (d) => {
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.pengambilandata }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -209,7 +210,7 @@ const doStoreData = async (d) => {
                           {{ errors.sumberkasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -229,7 +230,7 @@ const doStoreData = async (d) => {
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.golkasus }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -249,7 +250,7 @@ const doStoreData = async (d) => {
                           {{ errors.penyebabtimbulkasus }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -267,8 +268,8 @@ const doStoreData = async (d) => {
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.teknikkonseling }}
                         </div>
-                      </div>
-                      <div>
+                      </div> -->
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -286,7 +287,7 @@ const doStoreData = async (d) => {
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.keberhasilanpenanganankasus }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"

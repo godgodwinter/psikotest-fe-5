@@ -91,7 +91,7 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.prestasi }}</p>
+            <p class="indent-8 text-gray-700">{{ data.prestasi || "-" }}</p>
           </div>
         </div>
       </div>
@@ -106,7 +106,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.teknikbelajar }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.teknikbelajar || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -121,7 +123,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.saranabelajar }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.saranabelajar || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -136,7 +140,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.penunjangbelajar }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.penunjangbelajar || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -151,7 +157,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.kesimpulandansaran }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.kesimpulandansaran || "-" }}
+            </p>
           </div>
         </div>
       </div>

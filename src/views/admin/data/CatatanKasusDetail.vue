@@ -91,7 +91,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.pengambilandata }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.pengambilandata || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -106,7 +108,7 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.sumberkasus }}</p>
+            <p class="indent-8 text-gray-700">{{ data.sumberkasus || "-" }}</p>
           </div>
         </div>
       </div>
@@ -121,7 +123,7 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.golkasus }}</p>
+            <p class="indent-8 text-gray-700">{{ data.golkasus || "-" }}</p>
           </div>
         </div>
       </div>
@@ -136,7 +138,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.penyebabtimbulkasus }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.penyebabtimbulkasus || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -151,7 +155,9 @@ getData();
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.teknikkonseling }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.teknikkonseling || "-" }}
+            </p>
           </div>
         </div>
       </div>
@@ -167,7 +173,7 @@ getData();
 
           <div class="space-y-2 border-b-2 py-2">
             <p class="indent-8 text-gray-700">
-              {{ data.keberhasilanpenanganankasus }}
+              {{ data.keberhasilanpenanganankasus || "-" }}
             </p>
           </div>
         </div>
@@ -179,11 +185,13 @@ getData();
       <div class="overflow-x-auto px-4 space-y-10 py-2">
         <div class="space-y-2">
           <h1 class="text-lg font-bold text-gray-700 py-2 bg-gray-100 shadow">
-            Keterangan
+            Keterangan :
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.Keterangan }}</p>
+            <p class="indent-8 text-gray-700">
+              {{ data.keterangan || "-" }}
+            </p>
           </div>
         </div>
       </div>

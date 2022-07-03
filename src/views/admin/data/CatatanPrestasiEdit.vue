@@ -183,7 +183,7 @@ getDataId();
                           {{ errors.prestasi }}
                         </div>
                       </div>
-                      <div>
+                      <!-- <div>
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
@@ -201,7 +201,7 @@ getDataId();
                         <div class="text-xs text-red-600 mt-1">
                           {{ errors.teknikbelajar }}
                         </div>
-                      </div>
+                      </div> -->
                       <div>
                         <label
                           for="name"
@@ -245,7 +245,7 @@ getDataId();
                         <label
                           for="name"
                           class="text-sm font-medium text-gray-900 block mb-2"
-                          >Kesimpulan dan Saran</label
+                          >Keterangan</label
                         >
                         <textarea
                           v-model="dataDetail.kesimpulandansaran"
