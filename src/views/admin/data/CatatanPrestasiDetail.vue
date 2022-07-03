@@ -153,7 +153,7 @@ getData();
       <div class="overflow-x-auto px-4 space-y-10 py-2">
         <div class="space-y-2">
           <h1 class="text-lg font-bold text-gray-700 py-2 bg-gray-100 shadow">
-            Kesimpulan dan Saran
+            Keterangan
           </h1>
 
           <div class="space-y-2 border-b-2 py-2">
