@@ -2,7 +2,7 @@
   "name": "vue-project",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 3004",
+    "dev": "vite --port 3005",
     "build": "vite build",
     "preview": "vite preview  --port 3305 --host",
     "test:unit": "vitest --environment jsdom",
